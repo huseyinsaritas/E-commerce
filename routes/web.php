@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/merhaba',function (){
+    return "Merhaba";
+});
+
+Route::get('api/v1/merhaba',function (){
+    return ['mesaj'=>'merhaba'];
+});
