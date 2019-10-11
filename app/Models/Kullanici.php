@@ -3,8 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 class Kullanici extends Authenticatable
 {
@@ -12,7 +12,7 @@ class Kullanici extends Authenticatable
 
     protected $table = "kullanici";
 
-    protected $fillable = ['adsoyad', 'email', 'sifre','aktivasyon_anahtari','aktif_mi'];
+    protected $fillable = ['adsoyad', 'email','sifre','aktivasyon_anahtari','aktif_mi','yonetici_mi','guncelleme_tarihi','olusturulma_tarihi'];
     protected $hidden = ['sifre', 'aktivasyon_anahtari'];
 
     const CREATED_AT = 'olusturulma_tarihi';
@@ -22,5 +22,9 @@ class Kullanici extends Authenticatable
     public function getAuthPassword()
     {
         return $this->sifre;
+    }
+
+    public function detay(){
+        return $this->hasOne('App\Models\KullaniciDetay')->withDefault();
     }
 }
